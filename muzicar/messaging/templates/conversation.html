@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block base_content %}
+
+<ul>
+{% for message in object_list %}
+	<li class="{% if message.sender.id == user.id %}mine{% else %}other{% endif %}">{{ message.sent }}: {{ message.body }}</li>
+{% endfor %}
+</ul>
+
+<form action="" method="post">
+	{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Send" />
+</form>
+
+{% endblock %}

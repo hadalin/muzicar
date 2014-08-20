@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block base_content %}
+
+<ul>
+{% for message in object_list %}
+	{% url 'conversation-redirect' message.conversation.id as redirect_url %}
+	<a href="{{ redirect_url }}">
+		<li>{{ message.sent }}: {{ message.body }}</li>
+	</a>
+{% endfor %}
+</ul>
+
+{% endblock %}

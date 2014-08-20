@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+{% load static sekizai_tags %}
+
+<html lang="{{ LANGUAGE_CODE }}">
+	<head>
+		<meta charset="utf-8">
+		<title>Muzicar</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		
+		{% if debug %}
+			<link type="text/less" rel="stylesheet/less" href="{% static "bootstrap/less/bootstrap.less" %}">
+			<script type="text/javascript">
+				less = {
+					env: 'development',
+					logLevel: 1
+				};
+			</script>
+			<script type="text/javascript" src="{% static "js/libs/less-1.6.1.min.js" %}"></script>
+		{% else %}
+			<link type="text/less" rel="stylesheet" href="{% static "bootstrap/less/bootstrap.less" %}">
+		{% endif %}
+		
+		<script type="text/javascript" src="{% static "js/libs/jquery-1.10.2.min.js" %}"></script>
+	</head>
+
+	<body>
+		{% block base_content %}
+		{% endblock %}
+		
+		{% render_block "js" %}
+	</body>
+</html>

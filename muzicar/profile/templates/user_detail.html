@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block base_content %}
+
+<div>Username: {{ object.username }}</div>
+<div>First name: {{ object.first_name }}</div>
+<div>
+	{% if user.profile_pic %}
+		<img src="{{ object.profile_pic.url }}" />
+	{% else %}
+		<img src="{% static "images/no_profile_pic.jpg" %}" alt="No profile pic" />
+	{% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% load i18n sekizai_tags %}
+
+{% block base_content %}
+
+{% addtoblock "js" %}
+	<script type="text/javascript">
+		$(function() {
+			var username = '{{ username }}';
+			var usernameInput = $('#id_username');
+			var passwordInput = $('#id_password');
+			usernameInput.val(username);
+			username == '' ? usernameInput.focus() : passwordInput.focus();
+		});
+	</script>
+{% endaddtoblock %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 well">
+
+			<form method="post">
+    			{% csrf_token %}
+    			<fieldset>
+    				<legend>{% trans "Login" %}</legend>
+	    			{{ form.as_p }}
+    				<div class="control-group">
+						<div class="controls">
+							<label class="checkbox">
+								<input type="checkbox" name="remember_me" value="false"> {% trans "Remember me" %}
+							</label>
+        					<button type="submit" class="btn primary">{% trans "Login" %}</button>
+    					</div>
+    				</div>
+    			</fieldset>
+			</form>
+
+			{% if messages %}
+			<ul>
+				{% for message in messages %}
+				<li {% if message.tags %}class="message {{ message.tags }}"{% endif %}>{{ message }}</li>
+				{% endfor %}
+			</ul>
+			{% endif %} 
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}
